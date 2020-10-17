@@ -1,4 +1,4 @@
-# CRUD usando java web con Hibernate y MySQL.
+# Sabana de materias.
 
 ### Resumen
 Aplicación de ejemplo CRUD hecha en java usando servlets.
@@ -7,10 +7,7 @@ Como herramienta de compilación se utiliza [Gradle](https://gradle.org/).
 
 ### Descripción
 
-Consiste en una entidad simple llamada Lead cuyos datos son: firstName, lastName y age. en una de las paginas jsp
-se muestra el formulario para crear un nuevo Lead, y debajo de la misma aparece una tabla sencilla con los datos de los 
-Lead registrados, dentro de la tabla aparecen dos enlaces por cada registro uno de ellos es para ir al formulario y editar
-el registro en específico, y el otro es para borrar el registro en específico.
+Consiste en una aplicación con dos Roles: Profesor y Jefe, donde el jefe puede dar de alta las materias que se ofertan y el profesor puede ver su reporte de materias.
 
 
 ![alt text](./images/index.jsp.jpg "Pagina principal")

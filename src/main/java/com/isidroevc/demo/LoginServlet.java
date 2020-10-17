@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
         throws ServletException, IOException {
         IAuthenticator authenticator = new HttpSessionAuthenticator();
         authenticator.removeAccess(request, response);
-        response.sendRedirect("http://localhost:8080/sabana-reporte-maestros/login.jsp");
+        response.sendRedirect("http://localhost:8080/sabana-materias/login.jsp");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -27,11 +27,11 @@ public class LoginServlet extends HttpServlet {
         User user = userRepository.getUserByUsername(username);
         
         if (user == null || !user.getPassword().equals(password)) {
-          response.sendRedirect("http://localhost:8080/sabana-reporte-maestros/login.jsp");
+          response.sendRedirect("http://localhost:8080/sabana-materias/login.jsp");
           return;
         }
         IAuthenticator authenticator = new HttpSessionAuthenticator();
         authenticator.grantAccess(request, response);
-        response.sendRedirect("http://localhost:8080/sabana-reporte-maestros/index.jsp");
+        response.sendRedirect("http://localhost:8080/sabana-materias/index.jsp");
     }
 }

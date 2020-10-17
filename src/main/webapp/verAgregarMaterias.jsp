@@ -38,38 +38,59 @@ pageContext.setAttribute("materias", materias);
   width: 800px;
   margin-left: 50px;
 }
-h1 {
-  width: 100%;
-  text-align: center;
-}
-div.menu-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-div.buttons-container {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-}
-.menu-button {
-  margin: 10px;
-  width: 100%;
-} 
   </style>
 </head>
 
 <body>
-  <h1>Menú</h1>
-  <div class="menu-container">
-    <div class="buttons-container menu-button">
-      <a href="./verAgregarMaterias.jsp">
-        <button class="menu-button btn btn-primary">Materias</button>
-      </a>
-      <a href="menu-button">
-        <button class="menu-button btn btn-primary">Horarios</button>
-      </a>
-    </div>
+  <a href="./index.jsp">
+    <button class="btn btn-primary">
+      Menú
+    </button>
+  </a>
+  <h2>Materias</h2>
+  <div class="form-container">
+    <form method="POST" action="./materia">
+      <input type="hidden" name="metodo" value="crear" id="">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nombre materia</label>
+        <input type="nombre" class="form-control" name="nombre">
+      </div>
+      <div class="form-group">
+        <label for="creditos">Creditos</label>
+        <input type="number" class="form-control"  name="creditos">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>
+  <div class="tabla-materias">
+    <table class="table-responsive-lg">
+      <thead>
+        <th>
+          ID
+        </th>
+        <th>
+          Nombre
+        </th>
+        <th>
+          Creditos
+        </th>
+        <th>
+          Editar
+        </th>
+        <th>Eliminar</th>
+      </thead>
+      <tbody>
+        <c:forEach items="${materias}" var="materia">
+          <tr>
+            <td><c:out value="${materia.id}"/></td>
+            <td><c:out value="${materia.nombre}"/></td> 
+            <td><c:out value="${materia.creditos}"/></td>
+            <td><c:out value="${materia.creditos}"/></td>
+            <td><a href="./editarMateria.jsp?id=<c:out value="${materia.creditos}"/>"></a>  </td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

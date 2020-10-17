@@ -12,7 +12,7 @@ insert into usuario (id, username, nombre, rol, password) values
 (3,'luis', 'Luis Eduardo Gutiérrez Ayala', 'profesor', 'password');
 
 create table materia(
-  id int primary key,
+  id int primary key AUTO_INCREMENT,
   nombre varchar(255),
   creditos int
 );

@@ -30,6 +30,6 @@ public class MateriaServlet extends HttpServlet {
         Materia materia = new Materia(nombre, creditos);
         RepositorioCentral repositorioCentral = new RepositorioCentral();
         repositorioCentral.crear(materia);
-        response.sendRedirect("http://localhost:8080/sabana-reporte-maestros/index.jsp"); 
+        response.sendRedirect("http://localhost:8080/sabana-materias/verAgregarMaterias.jsp"); 
     }
 }

@@ -82,7 +82,7 @@ public class RepositorioCentral {
     Session session = this.sessionFactory.openSession();
     Transaction transaction = session.beginTransaction();
     try {
-        Materia materia = (Materia)session.get(Alumno.class, id);
+        Materia materia = (Materia)session.get(Materia.class, id);
         if (materia == null) {
             return;
         }
