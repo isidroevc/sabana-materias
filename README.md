@@ -10,21 +10,6 @@ Como herramienta de compilación se utiliza [Gradle](https://gradle.org/).
 Consiste en una aplicación con dos Roles: Profesor y Jefe, donde el jefe puede dar de alta las materias que se ofertan y el profesor puede ver su reporte de materias.
 
 
-![alt text](./images/index.jsp.jpg "Pagina principal")
-![alt text](./images/edit.jsp.jpg "Pagina de edicion")
-
-### Base de datos.
-
-La base de datos consiste únicamente de una sola tabla con la siguiente estructura.
-
-```sql
-CREATE TABLE lead (
-  id int primary key AUTO_INCREMENT,
-  first_name varchar(255),
-  last_name varchar(255),
-  age int
-);
-```
 
 ### Correr la aplicación.
 
