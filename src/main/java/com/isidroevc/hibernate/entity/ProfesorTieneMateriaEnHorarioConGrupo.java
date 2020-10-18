@@ -9,47 +9,47 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 @Entity
-@Table(name="ProfesorTieneMateriaEnHorarioConGrupo")
+@Table(name="profesor_tiene_materia_en_horario_con_grupo")
 public class ProfesorTieneMateriaEnHorarioConGrupo {
 
     @Id
     private long id;
-    @Column(name="nombre")
-    private String nombre;
     @Column(name="id_profesor")
-    private Integer idProfesor;
+    private Long idProfesor;
 
     @Column(name="id_materia")
-    private Integer idMateria;
+    private Long idMateria;
 
     @Column(name="id_horario")
-    private Integer idHorario;
+    private Long idHorario;
 
     @Column(name="id_aula")
-    private Integer idAula;
+    private Long idAula;
 
     @Column(name="id_grupo")
-    private Integer idGrupo;
+    private Long idGrupo;
 
-
-    public ProfesorTieneMateriaEnHorarioConGrupo() {
-
+    public ProfesorTieneMateriaEnHorarioConGrupo() {}
+    public ProfesorTieneMateriaEnHorarioConGrupo(
+      Long idProfesor,
+      Long idMateria,
+      Long idHorario,
+      Long idAula,
+      Long idGrupo
+    ) {
+      this.idProfesor = idProfesor;
+      this.idMateria = idMateria;
+      this.idHorario = idHorario;
+      this.idAula = idAula;
+      this.idGrupo = idGrupo;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setNombre(String nombre) {
-      this.nombre = nombre;
-    }
-
-    public String getNombre() {
-      return this.nombre;
-    }
-
     @ManyToOne
-    @JoinColumn(name = "idProfesor", referencedColumnName = "id")
+    @JoinColumn(name = "id_profesor", referencedColumnName = "id",  insertable=false, updatable=false)
     private User profesor;
 
     public void setProfesor(User profesor) {
@@ -61,7 +61,7 @@ public class ProfesorTieneMateriaEnHorarioConGrupo {
     }
 
     @ManyToOne
-    @JoinColumn(name = "idMateria", referencedColumnName = "id")
+    @JoinColumn(name = "id_materia", referencedColumnName = "id",  insertable=false, updatable=false)
     private Materia materia;
 
     public void setMateria(Materia materia) {
@@ -72,9 +72,21 @@ public class ProfesorTieneMateriaEnHorarioConGrupo {
       return this.materia;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "id_aula", referencedColumnName = "id",  insertable=false, updatable=false)
+    private Aula aula;
+
+    public void setAula(Aula aula) {
+      this.aula = aula;
+    }
+
+    public Aula getAula() {
+      return this.aula;
+    }
+
     
     @ManyToOne
-    @JoinColumn(name = "idHorario", referencedColumnName = "id")
+    @JoinColumn(name = "id_horario", referencedColumnName = "id",  insertable=false, updatable=false)
     private Horario horario;
 
     public void setMateria(Horario horario) {
@@ -86,7 +98,7 @@ public class ProfesorTieneMateriaEnHorarioConGrupo {
     }
 
     @ManyToOne
-    @JoinColumn(name = "idGrupo", referencedColumnName = "id")
+    @JoinColumn(name = "id_grupo", referencedColumnName = "id",  insertable=false, updatable=false)
     private Grupo grupo;
 
     public void setMateria(Grupo grupo) {

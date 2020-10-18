@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.isidroevc.hibernate.repository.UserRepository;
+
+
 import com.isidroevc.hibernate.entity.User;
 import com.isidroevc.artifacts.IAuthenticator;
 import com.isidroevc.artifacts.HttpSessionAuthenticator;
@@ -31,7 +33,13 @@ public class LoginServlet extends HttpServlet {
           return;
         }
         IAuthenticator authenticator = new HttpSessionAuthenticator();
-        authenticator.grantAccess(request, response);
-        response.sendRedirect("http://localhost:8080/sabana-materias/index.jsp");
+        authenticator.grantAccess(request, response, user);
+        System.out.println("User Role: " + user.getRol() + "_!!!!!!!!!!!!!!!!!");
+        if (user.getRol().equals("jefe")) {
+            response.sendRedirect("http://localhost:8080/sabana-materias/index.jsp");
+        } else {
+            response.sendRedirect("http://localhost:8080/sabana-materias/reporteProfesor.jsp?id=" + user.getId());
+        }
+        
     }
 }

@@ -14,30 +14,38 @@ public class Horario {
 
     @Id
     private long id;
-    @Column(name="nombre")
-    private String nombre;
+    @Column(name="detalle")
+    private String detalle;
+    @Column(name="dias")
+    private String dias;
     @Column(name="id_turno")
     private Integer idTurno;
-
     public Horario() {
 
     }
 
-    public Horario(String nombre, int idTurno) {
-        this.idTurno = idTurno;
-        this.nombre = nombre;
+    public Horario(String detalle) {
+        this.detalle = detalle;
     }
 
     public Long getId() {
         return this.id;
     }
 
-    public void setNombre(String nombre) {
-      this.nombre = nombre;
+    public void setDetalle(String detalle) {
+      this.detalle = detalle;
     }
 
-    public String getNombre() {
-      return this.nombre;
+    public String getDetalle() {
+      return this.detalle;
+    }
+
+    public void setDias(String dias) {
+      this.dias = dias;
+    }
+
+    public String getDias() {
+      return this.dias;
     }
 
     public void setIdTurno(Integer idTurno) {
@@ -49,7 +57,7 @@ public class Horario {
     }
 
     @ManyToOne
-    @JoinColumn(name = "idTurno", referencedColumnName = "id")
+    @JoinColumn(name = "id_turno", referencedColumnName = "id", insertable=false, updatable=false)
     private Turno turno;
 
     public void setTurno(Turno turno) {

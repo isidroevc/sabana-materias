@@ -11,8 +11,10 @@ if (!authenticator.hasAccess(request, response) || !authenticator.getCurrentRol(
   response.sendRedirect("http://localhost:8080/sabana-materias/login.jsp");
 }
 RepositorioCentral repositorioCentral = new RepositorioCentral();
-List<Materia> materias = repositorioCentral.obtenerMaterias();
-pageContext.setAttribute("materias", materias);
+String idText = request.getParameter("id");
+Long id = Long.parseLong(idText);
+Materia materia = repositorioCentral.findMateria(id);
+pageContext.setAttribute("materia", materia);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,55 +52,18 @@ pageContext.setAttribute("materias", materias);
   <h2>Materias</h2>
   <div class="form-container">
     <form method="POST" action="./materia">
-      <input type="hidden" name="metodo" value="crear" id="">
+      <input type="hidden" name="metodo" value="actualizar" id="">
+      <input type="hidden" name="id" value="${materia.id}" id="">
       <div class="form-group">
-        <label for="exampleInputEmail1">Nombre materia</label>
-        <input type="nombre" class="form-control" name="nombre">
+        <label for="nombre">Nombre materia</label>
+        <input type=text class="form-control" name="nombre" value="${materia.nombre}">
       </div>
       <div class="form-group">
         <label for="creditos">Creditos</label>
-        <input type="number" class="form-control"  name="creditos">
+        <input type="number" class="form-control"  name="creditos" value="${materia.creditos}">
       </div>
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-  </div>
-  <div class="tabla-materias">
-    <table class="table-responsive-lg">
-      <thead>
-        <th>
-          ID
-        </th>
-        <th>
-          Nombre
-        </th>
-        <th>
-          Creditos
-        </th>
-        <th>
-          
-        </th>
-        <th></th>
-      </thead>
-      <tbody>
-        <c:forEach items="${materias}" var="materia">
-          <tr>
-            <td><c:out value="${materia.id}"/></td>
-            <td><c:out value="${materia.nombre}"/></td> 
-            <td><c:out value="${materia.creditos}"/></td>
-            <td> 
-              <a href="./editarMateria.jsp?id=<c:out value="${materia.id}"/>">
-                <button class="btn btn-warning">Editar</button>
-              </a>
-            </td>
-            <td> 
-              <a href="./materia?metodo=eliminar&id=<c:out value="${materia.id}"/>">
-                <button class="btn btn-danger">Eliminar</button>
-              </a>
-            </td>
-          </tr>
-        </c:forEach>
-      </tbody>
-    </table>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

@@ -7,7 +7,7 @@
 <%@ page import="com.isidroevc.artifacts.HttpSessionAuthenticator"%>
 <%
 IAuthenticator authenticator = new HttpSessionAuthenticator();
-if (false && !authenticator.hasAccess(request, response)) {
+if (!authenticator.hasAccess(request, response) || !authenticator.getCurrentRol(request, response).equals("jefe")) {
   response.sendRedirect("http://localhost:8080/sabana-materias/login.jsp");
 }
 RepositorioCentral repositorioCentral = new RepositorioCentral();
@@ -66,8 +66,8 @@ div.buttons-container {
       <a href="./verAgregarMaterias.jsp">
         <button class="menu-button btn btn-primary">Materias</button>
       </a>
-      <a href="menu-button">
-        <button class="menu-button btn btn-primary">Horarios</button>
+      <a href="./sabana.jsp">
+        <button class="menu-button btn btn-primary">Sabana</button>
       </a>
     </div>
   </div>

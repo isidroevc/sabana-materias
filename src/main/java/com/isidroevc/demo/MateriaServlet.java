@@ -12,7 +12,12 @@ import com.isidroevc.hibernate.repository.RepositorioCentral;
 public class MateriaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        response.getWriter().print("Hello, World!");  
+        String metodo = request.getParameter("metodo");
+        if (metodo.equals("crear")) {
+            crear(request, response);
+        } else if (metodo.equals("eliminar")) {
+            eliminar(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -20,6 +25,10 @@ public class MateriaServlet extends HttpServlet {
         String metodo = request.getParameter("metodo");
         if (metodo.equals("crear")) {
             crear(request, response);
+        } else if (metodo.equals("eliminar")) {
+            eliminar(request, response);
+        } else if (metodo.equals("actualizar")) {
+            actualizar(request, response);
         }
     }
 
@@ -29,7 +38,31 @@ public class MateriaServlet extends HttpServlet {
         int creditos = Integer.parseInt(creditosText);
         Materia materia = new Materia(nombre, creditos);
         RepositorioCentral repositorioCentral = new RepositorioCentral();
-        repositorioCentral.crear(materia);
+        repositorioCentral.crearMateria(materia);
         response.sendRedirect("http://localhost:8080/sabana-materias/verAgregarMaterias.jsp"); 
     }
-}
+
+    public void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idText = request.getParameter("id");
+        Long id = Long.parseLong(idText);
+        RepositorioCentral repositorioCentral = new RepositorioCentral();
+        repositorioCentral.eliminarMateria(id);
+        response.sendRedirect("http://localhost:8080/sabana-materias/verAgregarMaterias.jsp"); 
+    }
+
+    public void actualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("The right method id being executed ===================");
+        String idText = request.getParameter("id");
+        Long id = Long.parseLong(idText);
+        String nombre = request.getParameter("nombre");
+        String creditosText = request.getParameter("creditos");
+        int creditos = Integer.parseInt(creditosText);
+        
+        RepositorioCentral repositorioCentral = new RepositorioCentral();
+        Materia materia = new Materia(nombre, creditos);
+        materia.setId(id);
+        System.out.println("The right method id being executed =================== " + materia.getId());
+        repositorioCentral.actualizarMateria(materia);
+        response.sendRedirect("http://localhost:8080/sabana-materias/verAgregarMaterias.jsp"); 
+    }
+} 

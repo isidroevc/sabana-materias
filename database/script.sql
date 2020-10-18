@@ -38,16 +38,21 @@ create table horario (
   id int AUTO_INCREMENT,
   id_turno int,
   detalle varchar(255),
+  dias varchar(30),
   constraint fk_horario_turno foreign key(id_turno) references turno(id),
    primary key (id)
 );
 
-insert into horario (id_turno, detalle) 
+insert into horario (id_turno, detalle, dias) 
 values
-  (1, '7:00 - 8:40'),
-  (1, '8:45 - 10:25'),
-  (1, '10:30 - 12:10'),
-  (1, '12:15 - 14:30');
+  (1, '7:00 - 8:40', 'L-M-V'),
+  (1, '8:45 - 10:25', 'L-M-V'),
+  (1, '10:30 - 12:10', 'L-M-V'),
+  (1, '12:15 - 14:30', 'L-M-V'),
+  (1, '7:00 - 8:40', 'Ma-J-V'),
+  (1, '8:45 - 10:25', 'Ma-J-V'),
+  (1, '10:30 - 12:10', 'Ma-J-V'),
+  (1, '12:15 - 14:30', 'Ma-J-V');
 
 
 create table aula(

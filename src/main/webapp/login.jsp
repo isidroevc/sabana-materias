@@ -7,12 +7,6 @@
 <%@ page import="com.isidroevc.artifacts.HttpSessionAuthenticator"%>
 
 <%
-IAuthenticator authenticator = new HttpSessionAuthenticator();
-if (authenticator.hasAccess(request, response)) {
-  response.sendRedirect("http://localhost:8080/crud-java-web-hibernate/");
-}
-
-
 %>
 <!DOCTYPE html>
 <html lang="en">
